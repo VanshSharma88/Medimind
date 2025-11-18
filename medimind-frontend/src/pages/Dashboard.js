@@ -12,7 +12,7 @@ export default function Dashboard() {
     }
 
     axios
-      .get("https://medimind-65y9.onrender.com/api/auth/me", {
+      .get("https://medimind-es7a.onrender.com/api/auth/me", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setUser(res.data.user))
