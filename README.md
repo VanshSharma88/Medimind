@@ -74,7 +74,3 @@ This project is released under the MIT License. See LICENSE for details.
 Contact
 
 For questions or help, open an issue or contact the maintainer: VanshSharma88
-
-Notes
-
-- Replace placeholder sections (framework, backend, database) with the actual technologies used in the repository to keep the README accurate.
