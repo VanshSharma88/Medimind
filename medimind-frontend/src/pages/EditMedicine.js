@@ -18,7 +18,6 @@ export default function EditMedicine() {
     });
     const [loading, setLoading] = useState(true);
 
-    // Modal State
     const [modal, setModal] = useState({
         isOpen: false,
         title: "",
@@ -37,8 +36,6 @@ export default function EditMedicine() {
             const res = await axios.get(`http://localhost:4000/api/medicines?t=${Date.now()}`, {
                 headers: { Authorization: `Bearer ${token}` },
             });
-            // Since we don't have a single medicine endpoint yet, find it from the list
-            // Or we can use the list we already have if we passed it via state, but fetching list is safer
             const medicine = res.data.find((m) => m.id === id);
             if (medicine) {
                 setFormData({

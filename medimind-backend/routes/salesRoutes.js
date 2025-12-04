@@ -4,10 +4,8 @@ const Sale = require("../models/Sale");
 const Medicine = require("../models/Medicine");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// Apply middleware
 router.use(authMiddleware);
 
-// Get all sales for logged-in user
 router.get("/", async (req, res) => {
     try {
         const sales = await Sale.find({ user: req.user.id }).sort({ date: -1 });
@@ -21,7 +19,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Record a new sale
 router.post("/", async (req, res) => {
     const { items } = req.body; // items: [{ medicineId, quantity }]
     if (!items || items.length === 0) {
@@ -33,7 +30,6 @@ router.post("/", async (req, res) => {
         const saleItemsData = [];
         const medicinesToUpdate = [];
 
-        // 1. Validate all items and check stock (scoped to user)
         for (const item of items) {
             const medicine = await Medicine.findOne({ _id: item.medicineId, user: req.user.id });
 
@@ -56,13 +52,11 @@ router.post("/", async (req, res) => {
             medicinesToUpdate.push({ medicine, quantity: item.quantity });
         }
 
-        // 2. Update stock (only if all validations pass)
         for (const update of medicinesToUpdate) {
             update.medicine.quantity -= update.quantity;
             await update.medicine.save();
         }
 
-        // 3. Create Sale record
         const sale = await Sale.create({
             total,
             items: saleItemsData,

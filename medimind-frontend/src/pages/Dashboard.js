@@ -34,7 +34,6 @@ export default function Dashboard() {
     setLoading(true);
     try {
       const token = localStorage.getItem("token");
-      // Add timestamp to prevent caching
       const res = await axios.get(`http://localhost:4000/api/dashboard/stats?t=${Date.now()}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -48,9 +47,8 @@ export default function Dashboard() {
 
   useEffect(() => {
     fetchStats();
-  }, [location.key]); // Re-fetch when location key changes (navigation)
+  }, [location.key]);
 
-  // Process data for chart
   const chartData = stats.recentSales.reduce((acc, sale) => {
     const date = new Date(sale.date).toLocaleDateString("en-US", { month: "short", day: "numeric" });
     const existing = acc.find((item) => item.date === date);
@@ -60,7 +58,7 @@ export default function Dashboard() {
       acc.push({ date, amount: sale.total });
     }
     return acc;
-  }, []).slice(-7); // Ensure we only show last 7 days if not already filtered
+  }, []).slice(-7);
 
   if (loading) return <div className="text-center p-10">Loading Dashboard...</div>;
 

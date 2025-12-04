@@ -1,4 +1,3 @@
-// app.js
 require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
@@ -16,14 +15,8 @@ const reportRoutes = require("./routes/reportRoutes");
 const app = express();
 app.use(express.json());
 app.use(cors());
-// app.use(
-//   helmet({
-//     crossOriginResourcePolicy: false,
-//     contentSecurityPolicy: false,
-//   })
-// );
 
-// Connect to MongoDB
+mongoose
 mongoose
   .connect(process.env.MONGO_URI || "mongodb://localhost:27017/medimind", {
     tlsAllowInvalidCertificates: true,
@@ -41,7 +34,6 @@ app.get("/", (req, res) => {
   res.send(" MediMind Auth API Running (MongoDB)");
 });
 
-// Auth Routes
 app.post("/api/auth/signup", async (req, res) => {
   const { name, email, password, role } = req.body;
   if (!name || !email || !password)

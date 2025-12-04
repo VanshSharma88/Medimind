@@ -3,10 +3,8 @@ const router = express.Router();
 const Medicine = require("../models/Medicine");
 const authMiddleware = require("../middleware/authMiddleware");
 
-// Apply middleware to all routes
 router.use(authMiddleware);
 
-// Get all medicines for the logged-in user
 router.get("/", async (req, res) => {
     try {
         const medicines = await Medicine.find({ user: req.user.id }).sort({ createdAt: -1 });
@@ -20,7 +18,6 @@ router.get("/", async (req, res) => {
     }
 });
 
-// Add new medicine
 router.post("/", async (req, res) => {
     const { name, description, category, price, quantity, expiryDate, supplier } = req.body;
     try {
@@ -41,7 +38,6 @@ router.post("/", async (req, res) => {
     }
 });
 
-// Update medicine
 router.put("/:id", async (req, res) => {
     const { id } = req.params;
     const { name, description, category, price, quantity, expiryDate, supplier } = req.body;
@@ -70,7 +66,6 @@ router.put("/:id", async (req, res) => {
     }
 });
 
-// Delete medicine
 router.delete("/:id", async (req, res) => {
     const { id } = req.params;
     try {

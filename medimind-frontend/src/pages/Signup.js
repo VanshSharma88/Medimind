@@ -10,7 +10,6 @@ export default function Signup() {
   const [msg, setMsg] = useState("");
   const [loading, setLoading] = useState(false);
 
-  // Clear old session on mount
   React.useEffect(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
@@ -26,7 +25,6 @@ export default function Signup() {
         password,
       });
 
-      // Auto-login
       localStorage.setItem("token", res.data.token);
       localStorage.setItem("user", JSON.stringify(res.data.user));
 

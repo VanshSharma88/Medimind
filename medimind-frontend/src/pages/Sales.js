@@ -9,7 +9,6 @@ export default function Sales() {
     const [selectedMedicine, setSelectedMedicine] = useState("");
     const [quantity, setQuantity] = useState(1);
 
-    // Modal State
     const [modal, setModal] = useState({
         isOpen: false,
         title: "",
@@ -36,7 +35,6 @@ export default function Sales() {
 
     const [searchTerm, setSearchTerm] = useState("");
 
-    // Filter medicines for dropdown
     const filteredMedicines = medicines.filter(m =>
         m.name.toLowerCase().includes(searchTerm.toLowerCase())
     );

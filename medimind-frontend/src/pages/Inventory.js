@@ -9,7 +9,6 @@ export default function Inventory() {
     const [loading, setLoading] = useState(true);
     const [searchTerm, setSearchTerm] = useState("");
 
-    // Modal State
     const [modal, setModal] = useState({
         isOpen: false,
         title: "",
@@ -24,10 +23,8 @@ export default function Inventory() {
         fetchMedicines();
     }, []);
 
-    // Handle Filters from Dashboard
     useEffect(() => {
         if (location.state?.filter) {
-            // Logic handled in filteredMedicines, just triggering re-render
         }
     }, [location.state]);
 

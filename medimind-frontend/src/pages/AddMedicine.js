@@ -16,7 +16,6 @@ export default function AddMedicine() {
         supplierId: "",
     });
 
-    // Modal State
     const [modal, setModal] = useState({
         isOpen: false,
         title: "",

@@ -11,7 +11,7 @@ router.use(authMiddleware);
 router.get("/stats", async (req, res) => {
     try {
         const totalSalesResult = await Sale.aggregate([
-            { $match: { user: new mongoose.Types.ObjectId(req.user.id) } }, // Filter by user
+            { $match: { user: new mongoose.Types.ObjectId(req.user.id) } },
             { $group: { _id: null, total: { $sum: "$total" } } }
         ]);
         const totalSales = totalSalesResult.length > 0 ? totalSalesResult[0].total : 0;

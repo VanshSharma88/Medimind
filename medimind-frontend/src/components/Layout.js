@@ -3,10 +3,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { LayoutDashboard, Package, ShoppingCart, BarChart3, User, LogOut } from "lucide-react";
 import Lottie from "lottie-react";
 
-// Sample Lottie JSON (Pharmacy/Medical related)
-// In a real app, this would be imported from a local JSON file
-// Using a placeholder JSON object if file fetch fails, but lottie-react handles URLs too if configured, 
-// or we can just import the local file we downloaded.
 import animationData from "../assets/pharmacy-animation.json";
 
 const Layout = ({ children }) => {
@@ -74,10 +70,6 @@ const Layout = ({ children }) => {
                             className="w-full h-full"
                         />
                     </div>
-                    {/* Optional: Keep a small logout icon/button somewhere if needed, 
-                        but user explicitly asked to remove the buttons. 
-                        I'll add a small logout icon in the header instead (already there).
-                    */}
                 </div>
             </aside>
 

@@ -14,7 +14,6 @@ export default function Reports() {
     const [format, setFormat] = useState("PDF");
     const [loading, setLoading] = useState(false);
 
-    // Modal State
     const [modal, setModal] = useState({
         isOpen: false,
         title: "",

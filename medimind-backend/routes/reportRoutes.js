@@ -8,7 +8,6 @@ router.use(authMiddleware);
 
 const Report = require("../models/Report");
 
-// Generate Report
 router.post("/generate", async (req, res) => {
     const { type, startDate, endDate, format } = req.body;
 
@@ -29,7 +28,6 @@ router.post("/generate", async (req, res) => {
 
         const fileName = `${type.replace(" ", "_")}_${Date.now()}.${format.toLowerCase()}`;
 
-        // Save Report History
         const newReport = new Report({
             user: req.user.id,
             name: fileName,
@@ -52,14 +50,12 @@ router.post("/generate", async (req, res) => {
     }
 });
 
-// Get Recent Reports
 router.get("/recent", async (req, res) => {
     try {
         const reports = await Report.find({ user: req.user.id })
             .sort({ createdAt: -1 })
             .limit(10);
 
-        // Format date for frontend
         const formattedReports = reports.map(r => ({
             id: r._id,
             name: r.name,
@@ -77,7 +73,6 @@ router.get("/recent", async (req, res) => {
     }
 });
 
-// Re-download (Regenerate) Report Data
 router.get("/download/:id", async (req, res) => {
     try {
         const report = await Report.findOne({ _id: req.params.id, user: req.user.id });
